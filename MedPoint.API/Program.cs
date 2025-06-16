@@ -2,6 +2,8 @@ using MedPoint.DAL.Data;
 using MedPoint.DAL.Repositories.Interfaces;
 using MedPoint.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using MedPoint.BLL.Services.Interfaces;
+using MedPoint.BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,12 @@ builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IMedicalServiceRepository, MedicalServiceRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();                    
+builder.Services.AddScoped<IMedicalServiceService, MedicalServiceService>();    
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IAppointmentServiceService, AppointmentServiceService>();
 
 var app = builder.Build();
 
