@@ -24,6 +24,7 @@ namespace MedPoint.DAL.Repositories
         {
             return await _dbSet
                 .Include(d => d.Appointments)
+                .ThenInclude(a => a.Patient)
                 .FirstOrDefaultAsync(d => d.Id == id);
         }
     }

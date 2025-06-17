@@ -22,7 +22,12 @@ namespace MedPoint.DAL.Repositories
         {
             return await _dbSet
                 .Include(p => p.Appointments)
+                    .ThenInclude(a => a.Doctor)  
+                .Include(p => p.Appointments)
+                    .ThenInclude(a => a.AppointmentServices)
+                        .ThenInclude(asv => asv.MedicalService) 
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
+
     }
 }

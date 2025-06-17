@@ -29,6 +29,8 @@ namespace MedPoint.DAL.Repositories
                 .Where(a => a.DoctorId == doctorId)
                 .Include(a => a.Doctor)
                 .Include(a => a.Patient)
+                .Include(a => a.AppointmentServices)
+                    .ThenInclude(asv => asv.MedicalService)
                 .ToListAsync();
         }
 
@@ -38,6 +40,8 @@ namespace MedPoint.DAL.Repositories
                 .Where(a => a.PatientId == patientId)
                 .Include(a => a.Doctor)
                 .Include(a => a.Patient)
+                .Include(a => a.AppointmentServices)
+                    .ThenInclude(asv => asv.MedicalService)
                 .ToListAsync();
         }
     }
